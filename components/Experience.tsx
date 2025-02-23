@@ -4,17 +4,31 @@ import { motion } from "framer-motion"
 
 const experiences = [
   {
-    title: "Senior Web Developer",
-    company: "Tech Solutions Inc.",
-    period: "2020 - Present",
-    description: "Led a team of developers in creating responsive web applications using React and Node.js.",
+    title: "AI Engineer",
+    company: "AiHello",
+    period: "May 2024 - Present",
+    description: "Leading remote team and projects at AiHello Brain. Building innovative and exciting AI projects.",
   },
   {
-    title: "Full Stack Developer",
-    company: "Digital Innovations Co.",
-    period: "2018 - 2020",
-    description: "Developed and maintained full-stack web applications using MERN stack.",
+    title: "AI Researcher & Technical Writer",
+    company: "Superteams.ai",
+    period: "Dec 2023 - May 2024",
+    description: "Part of research team to publish articles on latest AI technologies including LLM, RAG, and GenAI.",
   },
+  {
+    title: "Machine Learning Engineer",
+    company: "DataNNovite Sol",
+    period: "Sep 2023 - May 2024",
+    description: "Worked as freelancer on MLOps infrastructure and part of R&D team.",
+  },
+  {
+    title: "Computer Vision Intern",
+    company: "Netra AI ",
+    period: "Mar 2023 - Apr 2020",
+    description: "Worked on Langchain projects, but got laid off!",
+  },
+
+
   // Add more experiences as needed
 ]
 

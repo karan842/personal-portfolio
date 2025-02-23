@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
@@ -12,7 +12,7 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
           className="text-4xl md:text-6xl font-bold mb-4"
         >
-          Hi, I'm <span className="text-blue-500 dark:text-blue-400">Karan Shingde</span>
+          Hi, I am <span className="text-blue-500 dark:text-blue-400">Karan Shingde</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: -20 }}
@@ -20,7 +20,7 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-xl md:text-2xl mb-8"
         >
-          <span className="text-teal-500 dark:text-teal-400">AI Engineer</span> crafting intelligent systems
+          <span className="text-green-500 dark:text-green-400">AI Engineer</span> crafting intelligent systems
         </motion.p>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -36,47 +36,47 @@ const Hero = () => {
           </a>
           <a
             href="#projects"
-            className="bg-teal-500 text-white px-6 py-2 rounded-full hover:bg-teal-600 transition-colors"
+            className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors"
           >
             View Projects
           </a>
         </motion.div>
       </div>
-      <BackgroundAnimation />
+      <ParticleEffect />
     </section>
-  )
-}
+  );
+};
 
-const BackgroundAnimation = () => {
+const ParticleEffect = () => {
   return (
-    <div className="absolute inset-0 z-0">
-      {[...Array(50)].map((_, i) => (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, delay: 0.5 }}
+      className="absolute inset-0 pointer-events-none"
+    >
+      {[...Array(40)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute bg-blue-500 dark:bg-blue-400 rounded-full opacity-10"
-          style={{
-            width: Math.random() * 100 + 50,
-            height: Math.random() * 100 + 50,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+          className="absolute w-2 h-2 bg-blue-400 dark:bg-blue-300 rounded-full shadow-lg"
+          initial={{
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
           }}
           animate={{
-            scale: [1, 2, 2, 1, 1],
-            rotate: [0, 0, 270, 270, 0],
-            opacity: [0.1, 0.2, 0.4, 0.2, 0.1],
-            borderRadius: ["20%", "20%", "50%", "80%", "20%"],
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
           }}
           transition={{
-            duration: Math.random() * 10 + 10,
-            ease: "easeInOut",
+            duration: Math.random() * 4 + 2, // Faster movement (2s - 6s range)
             repeat: Number.POSITIVE_INFINITY,
-            repeatType: "reverse",
+            repeatType: "mirror",
+            ease: "linear",
           }}
         />
       ))}
-    </div>
-  )
-}
+    </motion.div>
+  );
+};
 
-export default Hero
-
+export default Hero;
