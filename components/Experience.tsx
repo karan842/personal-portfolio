@@ -10,22 +10,28 @@ const experiences = [
     description: "Leading remote team and projects at AiHello Brain. Building innovative and exciting AI projects.",
   },
   {
-    title: "AI Researcher & Technical Writer",
+    title: "AI Researcher & Technical Writer - Freelance",
     company: "Superteams.ai",
     period: "Dec 2023 - May 2024",
     description: "Part of research team to publish articles on latest AI technologies including LLM, RAG, and GenAI.",
   },
   {
-    title: "Machine Learning Engineer",
+    title: "Machine Learning Engineer - Contract Based",
     company: "DataNNovite Sol",
     period: "Sep 2023 - May 2024",
-    description: "Worked as freelancer on MLOps infrastructure and part of R&D team.",
+    description: "Built on MLOps infrastructure and part of R&D team.",
   },
   {
     title: "Computer Vision Intern",
-    company: "Netra AI ",
+    company: "Netra AI",
     period: "Mar 2023 - Apr 2020",
     description: "Worked on Langchain projects, but got laid off!",
+  },
+  {
+    title: "Data Science Intern",
+    company: "Markytics",
+    period: "Aug 2022 - Oct 2022",
+    description: "Assisted team to build finance portal using Djagno and AWS.",
   },
 
 
