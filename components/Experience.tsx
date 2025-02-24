@@ -31,18 +31,17 @@ const experiences = [
     title: "Data Science Intern",
     company: "Markytics",
     period: "Aug 2022 - Oct 2022",
-    description: "Assisted team to build finance portal using Djagno and AWS.",
+    description: "Assisted team to build finance portal using Django and AWS.",
   },
-
-
-  // Add more experiences as needed
 ]
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-20 bg-muted">
+    <section id="experience" className="py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-8 text-center">Experience</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center text-black dark:text-white">
+          Experience
+        </h2>
         <div className="space-y-8">
           {experiences.map((exp, index) => (
             <motion.div
@@ -50,11 +49,14 @@ const Experience = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card text-card-foreground p-6 rounded-lg shadow-lg"
+              className="bg-white dark:bg-gray-800 bg-opacity-50 dark:bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg overflow-hidden shadow-lg p-6"
             >
               <h3 className="text-xl font-semibold">{exp.title}</h3>
-              <p className="text-muted-foreground">{exp.company}</p>
-              <p className="text-sm text-muted-foreground">{exp.period}</p>
+              {/* Company name styled like project tags */}
+              <span className="inline-block text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-white dark:text-black border border-gray-500 mt-2">
+                {exp.company}
+              </span>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">{exp.period}</p>
               <p className="mt-2">{exp.description}</p>
             </motion.div>
           ))}
@@ -65,4 +67,3 @@ const Experience = () => {
 }
 
 export default Experience
-

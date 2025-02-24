@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
   return (
@@ -10,10 +11,14 @@ const Hero = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-6xl font-bold mb-4"
+          className="text-4xl md:text-6xl font-bold mb-4 flex items-center justify-center"
         >
-          Hi, I am <span className="text-blue-500 dark:text-blue-400">Karan Shingde</span>
+          Hi <WavingHand /> ,&nbsp;<span>I am&nbsp;</span>
+          <span className="text-blue-500 dark:text-blue-400">Karan</span>
+
         </motion.h1>
+
+
         <motion.p
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -47,7 +52,50 @@ const Hero = () => {
   );
 };
 
+// Waving hand component with animation
+const WavingHand = () => {
+  const waveAnimation = {
+    rotate: [0, 14, -8, 14, -4, 10, 0, 0],
+  };
+
+  return (
+    <motion.span
+      className="inline-block mx-2 transform-origin-bottom-right text-4xl md:text-5xl"
+      animate={waveAnimation}
+      transition={{
+        duration: 2.5,
+        repeat: Infinity,
+        repeatType: "loop",
+        ease: "easeInOut",
+        repeatDelay: 1,
+      }}
+      style={{ originY: 0.7, originX: 0.7 }}
+    >
+      👋
+    </motion.span>
+  );
+};
+
 const ParticleEffect = () => {
+  const [particles, setParticles] = useState<{ x: number; y: number }[]>([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const createParticles = () => {
+        setParticles(
+          [...Array(40)].map(() => ({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+          }))
+        );
+      };
+
+      createParticles();
+      window.addEventListener("resize", createParticles);
+      return () => window.removeEventListener("resize", createParticles);
+    }
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -55,20 +103,17 @@ const ParticleEffect = () => {
       transition={{ duration: 1, delay: 0.5 }}
       className="absolute inset-0 pointer-events-none"
     >
-      {[...Array(40)].map((_, i) => (
+      {particles.map((p, i) => (
         <motion.div
           key={i}
           className="absolute w-2 h-2 bg-blue-400 dark:bg-blue-300 rounded-full shadow-lg"
-          initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-          }}
+          initial={{ x: p.x, y: p.y }}
           animate={{
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
           }}
           transition={{
-            duration: Math.random() * 4 + 2, // Faster movement (2s - 6s range)
+            duration: Math.random() * 4 + 2,
             repeat: Number.POSITIVE_INFINITY,
             repeatType: "mirror",
             ease: "linear",

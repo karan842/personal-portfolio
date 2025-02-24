@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { motion } from "framer-motion"
 
@@ -18,14 +17,12 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Handle form submission here (e.g., send data to an API)
     console.log("Form submitted:", formData)
-    // Reset form after submission
     setFormData({ name: "", email: "", message: "" })
   }
 
   return (
-    <section id="contact" className="py-20 bg-muted">
+    <section id="contact" className="py-20 bg-muted dark:bg-black dark:text-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-8 text-center">Contact Me</h2>
         <motion.form
@@ -33,7 +30,7 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           onSubmit={handleSubmit}
-          className="max-w-lg mx-auto"
+          className="max-w-lg mx-auto bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg"
         >
           <div className="mb-4">
             <label htmlFor="name" className="block text-sm font-medium mb-1">
@@ -46,7 +43,7 @@ const Contact = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border rounded-md bg-gray-100 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="mb-4">
@@ -60,7 +57,7 @@ const Contact = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border rounded-md bg-gray-100 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="mb-4">
@@ -74,12 +71,12 @@ const Contact = () => {
               onChange={handleChange}
               required
               rows={4}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-3 py-2 border rounded-md bg-gray-100 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
             ></textarea>
           </div>
           <button
             type="submit"
-            className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors"
+            className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors dark:bg-black dark:text-white dark:border dark:border-white dark:hover:bg-white dark:hover:text-black"
           >
             Send Message
           </button>
@@ -90,4 +87,3 @@ const Contact = () => {
 }
 
 export default Contact
-

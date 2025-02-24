@@ -4,20 +4,23 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { FaGithub } from "react-icons/fa"
 
+import NyayNidhiImg from "@/app/assets/Nyaynidhi.png"
+import FinoHubImg from "@/app/assets/FinoHub-logo.png"
+
 const projects = [
   {
-    title: "AI Chatbot",
-    description: "An intelligent chatbot built with PyTorch and FastAPI.",
-    image: "/placeholder.svg?height=200&width=300",
-    link: "#",
-    github: "https://github.com/yourusername/ai-chatbot",
+    title: "NyayNidhi AI",
+    description: "An AI agent who assists people in understanding Indian Judiciary system.",
+    tags: ["Python", "LangChain", "Qdrant", "TAVily Search", "Streamlit"],
+    image: NyayNidhiImg,
+    github: "https://github.com/karan842/nyaynidhi",
   },
   {
-    title: "ML Pipeline",
-    description: "End-to-end machine learning pipeline using Docker and MLflow.",
-    image: "/placeholder.svg?height=200&width=300",
-    link: "#",
-    github: "https://github.com/yourusername/ml-pipeline",
+    title: "FinoHub",
+    description: "Loan Eligibility prediction webapp using MLOps architecture.",
+    tags: ["Python", "Scikit-Learn", "Docker", "AWS"],
+    image: FinoHubImg,
+    github: "https://github.com/karan842/finohub",
   },
   // Add more projects as needed
 ]
@@ -46,15 +49,17 @@ const Projects = () => {
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
-                <div className="flex justify-between items-center">
-                  <a
-                    href={project.link}
-                    className="text-blue-500 hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Project
-                  </a>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag, idx) => (
+                    <span 
+                      key={idx} 
+                      className="text-xs px-2 py-1 rounded-full bg-black text-white dark:bg-white dark:text-black border border-gray-500"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex justify-end items-center">
                   <a
                     href={project.github}
                     className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100"
@@ -74,4 +79,3 @@ const Projects = () => {
 }
 
 export default Projects
-
