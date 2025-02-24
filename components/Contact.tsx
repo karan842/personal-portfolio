@@ -10,15 +10,34 @@ const Contact = () => {
     email: "",
     message: "",
   })
+  const [status, setStatus] = useState<{ type: "success" | "error" | ""; message: string }>({
+    type: "",
+    message: "",
+  })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    setFormData({ name: "", email: "", message: "" })
+    setStatus({ type: "", message: "" })
+    try {
+      const response = await fetch("/api/route", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
+      
+      if (response.ok) {
+        setStatus({ type: "success", message: "Message sent successfully!" })
+        setFormData({ name: "", email: "", message: "" })
+      } else {
+        setStatus({ type: "error", message: "Failed to send message. Please try again later." })
+      }
+    } catch {
+      setStatus({ type: "error", message: "Something went wrong. Please try again." })
+    }
   }
 
   return (
@@ -80,6 +99,11 @@ const Contact = () => {
           >
             Send Message
           </button>
+          {status.message && (
+            <p className={`mt-4 text-center ${status.type === "success" ? "text-green-500" : "text-red-500"}`}>
+              {status.message}
+            </p>
+          )}
         </motion.form>
       </div>
     </section>
