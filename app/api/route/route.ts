@@ -17,10 +17,10 @@ export async function POST(req: Request) {
     });
 
     const mailOptions = {
-      from: `"Shree Shot Blasting Contact Form" <${process.env.EMAIL_USER}>`, // Display Name
+      from: `"Karan's portfolio Contact Form" <${process.env.EMAIL_USER}>`, // Display Name
       replyTo: email, // So you can reply directly to the sender
       to: process.env.EMAIL_USER,
-      subject: `📩 New Inquiry from ${name} - Shree Shot Blasting Website`,
+      subject: `📩 New Inquiry from ${name} - Personal Portfolio`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n\n${message}`,
     };
 
