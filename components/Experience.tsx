@@ -24,7 +24,7 @@ const experiences = [
   {
     title: "Computer Vision Intern",
     company: "Netra AI",
-    period: "Mar 2023 - Apr 2020",
+    period: "Mar 2023 - Apr 2023",
     description: "Worked on Langchain projects, but got laid off!",
   },
   {
