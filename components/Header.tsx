@@ -9,7 +9,7 @@ const Header = () => {
   const { theme, setTheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
 
-  const menuItems = ["Home", "Experience", "Projects", "Tech Stack", "Contact"]
+  const menuItems = ["Home", "Experience", "Projects", "Services", "Tech Stack", "Contact"]
 
   return (
     <div className="fixed top-0 left-0 right-0 flex justify-center z-50 pt-4 px-4">

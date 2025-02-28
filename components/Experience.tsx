@@ -33,6 +33,12 @@ const experiences = [
     period: "Aug 2022 - Oct 2022",
     description: "Assisted team to build finance portal using Django and AWS.",
   },
+  {
+    title: "Freelancer (Self-Employed)",
+    company: "Independent – No Organizational Tie-up",
+    period: "Present",
+    description: "Helped PhD researchers build novel algorithms in data poisoning and federated learning. Developed ML chatbots as POCs for clients. Built SEO landing pages for local businesses.",
+  },
 ]
 
 const Experience = () => {
