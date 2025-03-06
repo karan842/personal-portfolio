@@ -7,31 +7,31 @@ const services = [
   {
     title: "AI Consulting",
     description:
-      "Empower your business with cutting-edge AI solutions. I provide expert consulting to help you identify opportunities, develop strategies, and implement AI technologies that drive growth and efficiency. From machine learning to natural language processing, I'll guide you through the AI landscape.",
+      "Expert AI consulting to identify opportunities, develop strategies, and implement AI technologies for business growth and efficiency.",
     icon: FaLightbulb,
   },
   {
     title: "Freelance AI Development",
     description:
-      "Bring your AI projects to life with custom development services. Specializing in generative AI chatbots, machine learning pipelines, and intelligent automation, I deliver tailored solutions that meet your specific needs. Let's turn your AI concepts into reality.",
+      "Custom AI development services specializing in generative AI chatbots, machine learning pipelines, and intelligent automation.",
     icon: FaCode,
   },
   {
     title: "AI Career Mentoring",
     description:
-      "Navigate the exciting world of AI and tech with personalized career guidance. Whether you're just starting out or looking to advance, I offer mentorship to help you develop skills, build a strong portfolio, and make informed career decisions in the rapidly evolving field of AI.",
+      "Personalized career guidance in AI and tech to develop skills, build a portfolio, and make informed career decisions.",
     icon: FaChalkboardTeacher,
   },
   {
     title: "Digital Presence Setup",
     description:
-      "Establish a powerful online presence that sets you apart. I offer comprehensive services including SEO-optimized website development, content strategy, and digital marketing campaigns. Boost your visibility, engage your audience, and drive growth in the digital landscape.",
+      "Comprehensive services including SEO-optimized website development, content strategy, and digital marketing campaigns to boost your online presence.",
     icon: FaGlobe,
   },
   {
     title: "Technical Writing",
     description:
-      "Enhance your brand with high-quality technical content. I provide in-depth articles and blogs on AI, ML, and emerging CS technologies. Whether it's platform-based content or technical documentation, I ensure engaging and informative writing tailored to your audience.",
+      "High-quality technical content, including in-depth articles and blogs on AI, ML, and emerging CS technologies.",
     icon: FaPencilAlt,
   },
 ]
@@ -66,4 +66,3 @@ const Services = () => {
 }
 
 export default Services
-
