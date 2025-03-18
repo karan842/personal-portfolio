@@ -2,8 +2,35 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { getCalApi } from "@calcom/embed-react";
 
 const Hero = () => {
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ namespace: "introductory-meet" });
+      cal("floatingButton", {
+        calLink: "karanshingde/introductory-meet",
+        config: { layout: "month_view" },
+      });
+      cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
+    })();
+  }, []);
+
+  const phrases = [
+    "Building AI agents",
+    "Scaling MLOps",
+    "Writing blogs",
+    "Mentoring minds",
+    "Designing SEO strategies",
+    "Developing web apps",
+    "Lifting heavy",
+    "Conquering mountains",
+    "Optimizing life",
+    "Taking naps",
+    "Coding at 2 AM",
+    "Wait... you're still here?",
+  ];
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       <div className="text-center z-10">
@@ -15,18 +42,18 @@ const Hero = () => {
         >
           Hi <WavingHand /> ,&nbsp;<span>I am&nbsp;</span>
           <span className="text-blue-500 dark:text-blue-400">Karan</span>
-
         </motion.h1>
 
-
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-xl md:text-2xl mb-8"
+          className="text-xl md:text-2xl mb-8 h-16 flex justify-center items-center"
         >
-          <span className="text-green-500 dark:text-green-400">AI Engineer</span> crafting intelligent systems
-        </motion.p>
+          <span className="mr-2">I do</span>
+          <TypedText phrases={phrases} />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -35,19 +62,18 @@ const Hero = () => {
         >
           <a
             href="#contact"
-            className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors"
+            className="bg-white text-black px-6 py-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors"
           >
             Contact Me
           </a>
           <a
-            href="#projects"
-            className="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors"
+            href="#services"
+            className="bg-black text-white px-6 py-2 rounded-full shadow-lg hover:bg-gray-800 transition-colors"
           >
-            View Projects
+            Services
           </a>
         </motion.div>
       </div>
-      <ParticleEffect />
     </section>
   );
 };
@@ -76,51 +102,40 @@ const WavingHand = () => {
   );
 };
 
-const ParticleEffect = () => {
-  const [particles, setParticles] = useState<{ x: number; y: number }[]>([]);
+// Typing effect component
+const TypedText = ({ phrases }: { phrases: string[] }) => {
+  const [currentPhrase, setCurrentPhrase] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const createParticles = () => {
-        setParticles(
-          [...Array(40)].map(() => ({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-          }))
-        );
-      };
+    const speed = isDeleting ? 40 : 80; // Faster typing speed
+    const delay = isDeleting ? 20 : 100; // Delay for smooth effect
+    const current = phrases[currentPhrase];
 
-      createParticles();
-      window.addEventListener("resize", createParticles);
-      return () => window.removeEventListener("resize", createParticles);
-    }
-  }, []);
+    const timer = setTimeout(() => {
+      if (isDeleting) {
+        setCurrentText(current.substring(0, currentText.length - 1));
+      } else {
+        setCurrentText(current.substring(0, currentText.length + 1));
+      }
+
+      if (!isDeleting && currentText === current) {
+        setTimeout(() => setIsDeleting(true), 1200);
+      } else if (isDeleting && currentText === "") {
+        setIsDeleting(false);
+        setCurrentPhrase((prev) => (prev + 1) % phrases.length);
+      }
+    }, isDeleting ? delay : speed);
+
+    return () => clearTimeout(timer);
+  }, [currentText, currentPhrase, isDeleting, phrases]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1, delay: 0.5 }}
-      className="absolute inset-0 pointer-events-none"
-    >
-      {particles.map((p, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-blue-400 dark:bg-blue-300 rounded-full shadow-lg"
-          initial={{ x: p.x, y: p.y }}
-          animate={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-          }}
-          transition={{
-            duration: Math.random() * 4 + 2,
-            repeat: Number.POSITIVE_INFINITY,
-            repeatType: "mirror",
-            ease: "linear",
-          }}
-        />
-      ))}
-    </motion.div>
+    <span className="text-green-500 dark:text-green-400 inline-block text-left min-w-[180px]">
+      {currentText}
+      <span className="animate-blink">|</span>
+    </span>
   );
 };
 
