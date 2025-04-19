@@ -1,15 +1,16 @@
-"use client"
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { useTheme } from "next-themes"
-import { FiMoon, FiSun } from "react-icons/fi"
-import { HiOutlineMenu, HiOutlineX } from "react-icons/hi"
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
+import { FiMoon, FiSun } from "react-icons/fi";
+import { HiOutlineMenu, HiOutlineX } from "react-icons/hi";
 
 const Header = () => {
-  const { theme, setTheme } = useTheme()
-  const [isOpen, setIsOpen] = useState(false)
+  const { theme, setTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const menuItems = ["Home", "Experience", "Projects", "Services", "Tech Stack", "Contact"]
+  const menuItems = ["Home", "Experience", "Projects", "Services", "Tech Stack", "Contact"];
 
   return (
     <div className="fixed top-0 left-0 right-0 flex justify-center z-50 pt-4 px-4">
@@ -17,7 +18,7 @@ const Header = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-background/80 backdrop-blur-md rounded-full shadow-lg py-2 px-6 flex items-center w-full max-w-3xl mx-auto justify-between"
+        className="bg-background/80 backdrop-blur-md rounded-full shadow-lg py-2 px-6 flex items-center w-full max-w-4xl mx-auto justify-between"
       >
         {/* Mobile Menu Button - Left side in Mobile */}
         <button
@@ -28,14 +29,19 @@ const Header = () => {
           {isOpen ? <HiOutlineX size={24} /> : <HiOutlineMenu size={24} />}
         </button>
 
+        {/* Mobile "K-Means Karan" Text - Centered between the hamburger menu and theme toggle */}
+        <div className="flex-1 md:hidden text-center">
+          <span className="font-mono text-lg text-gray-800 dark:text-gray-200">K-Means Karan</span>
+        </div>
+
         {/* Desktop Navigation - Centered */}
         <div className="hidden md:flex flex-1 justify-center">
-          <nav className="flex items-center gap-6 text-sm md:text-base">
+          <nav className="flex items-center gap-8 text-sm md:text-base">
             {menuItems.map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase().replace(/\s+/g, "-").trim()}`} 
-                className="hover:text-primary transition-colors font-medium"
+                href={`#${item.toLowerCase().replace(/\s+/g, "-").trim()}`}
+                className="text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors font-mono"
               >
                 {item}
               </a>
@@ -66,8 +72,8 @@ const Header = () => {
             {menuItems.map((item) => (
               <a
                 key={item}
-                href={`#${item.toLowerCase().replace(/\s+/g, "-").trim()}`} 
-                className="text-lg font-medium hover:text-primary transition-colors"
+                href={`#${item.toLowerCase().replace(/\s+/g, "-").trim()}`}
+                className="text-lg font-mono text-gray-800 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {item}
@@ -77,7 +83,7 @@ const Header = () => {
         )}
       </AnimatePresence>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
