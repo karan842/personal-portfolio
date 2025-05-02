@@ -23,7 +23,8 @@ const Hero = () => {
     "Scaling MLOps",
     "Writing blogs",
     "Mentoring minds",
-    "Designing SEO strategies/landing pages",
+    "Designing SEO strategies",
+    "Making landing pages",
     "Wait... you're still here?",
   ];
 
